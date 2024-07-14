@@ -17,7 +17,6 @@ public class CreatePostService implements CreatePostUseCase {
     @Override
     public Mono<Post> createPostUseCase(RequestedPostCommand command) {
         Post post = Post.of(command.title(), PostMimeType.of(command.mimeType()), command.content());
-
         return postPort.create(post);
     }
 }

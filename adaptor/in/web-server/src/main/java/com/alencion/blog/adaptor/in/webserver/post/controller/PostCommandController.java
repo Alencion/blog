@@ -1,6 +1,7 @@
 package com.alencion.blog.adaptor.in.webserver.post.controller;
 
 import com.alencion.blog.adaptor.in.webserver.post.model.response.Response;
+import com.alencion.blog.post.Post;
 import com.alencion.blog.post.application.CreatePostUseCase;
 import com.alencion.blog.post.application.RequestedPostCommand;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ public class PostCommandController {
     }
 
     @PostMapping("/posts")
-    public Mono<Response<String>> createPost(RequestedPostCommand requestedPost) {
+    public Mono<Response<Post>> createPost(RequestedPostCommand requestedPost) {
         var requestedPostCommand = new RequestedPostCommand(requestedPost.title(), requestedPost.mimeType(), requestedPost.content());
         return createPostUseCase.createPostUseCase(requestedPostCommand).map(Response::new);
     }

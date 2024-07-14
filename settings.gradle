@@ -6,4 +6,4 @@ include 'application'
 include 'toolbox:monitor'
 include 'toolbox:logger'
 include 'toolbox:common'
-
+include 'toolbox:docs'
