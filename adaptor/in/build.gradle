@@ -1,0 +1,31 @@
+subprojects {
+    apply plugin: 'org.asciidoctor.jvm.convert'
+
+    ext {
+        snippetsDir = file('build/generated-snippets')
+    }
+
+    asciidoctor {
+        dependsOn test
+        attributes "snippets": snippetsDir
+        inputs.dir sourceDir
+    }
+
+
+    test {
+        outputs.dir snippetsDir
+    }
+
+    bootJar {
+        dependsOn test
+        from("${asciidoctor.outputDir}/html5") {
+            into 'static/docs'
+        }
+    }
+
+    dependencies {
+        testImplementation(project(":toolbox:docs"))
+    }
+}
+
+

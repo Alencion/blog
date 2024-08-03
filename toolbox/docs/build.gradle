@@ -1,5 +1,13 @@
-dependencies {
-    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-webtestclient'
+bootJar {
+    enabled = false
 }
 
+jar {
+    enabled = true
+}
+
+dependencies {
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    api 'org.springframework.restdocs:spring-restdocs-core'
+    api 'org.springframework.restdocs:spring-restdocs-webtestclient'
+}

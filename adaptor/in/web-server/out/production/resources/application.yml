@@ -4,3 +4,4 @@ logging:
     com:
       alencion:
         blog: debug
+

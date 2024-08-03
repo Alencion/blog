@@ -1,0 +1,54 @@
+= Alencion blog
+blog.alencion.com
+ifndef::snippets[]
+:basedir: {docdir}/../../../
+:snippets: build/generated-snippets
+:sources-root: {basedir}/src
+:resources: {sources-root}/main/resources
+:resources-test: {sources-root}/test/resources
+:java: {sources-root}/main/java
+:java-test: {sources-root}/test/java
+endif::[]
+= API Document
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:stylesdir: src/docs/asciidoc
+:stylesheet: custom-style.css
+
+//NOTE: ""
+
+//TIP: ""
+
+//IMPORTANT: ""
+
+//CAUTION: ""
+
+//WARNING: ""
+
+== Post
+
+=== GET /posts
+
+==== Request
+
+===== Request Fields:
+include::{snippets}/post/request-fields.adoc[]
+
+===== Request Body:
+include::{snippets}/post/request-body.adoc[]
+
+===== CURL Example:
+include::{snippets}/post/curl-request.adoc[]
+
+==== Response
+
+===== Response Fields:
+include::{snippets}/post/response-fields.adoc[]
+
+===== Response Body:
+include::{snippets}/post/response-body.adoc[]
+

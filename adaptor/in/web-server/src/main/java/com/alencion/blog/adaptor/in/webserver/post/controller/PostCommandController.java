@@ -5,6 +5,7 @@ import com.alencion.blog.post.Post;
 import com.alencion.blog.post.application.CreatePostUseCase;
 import com.alencion.blog.post.application.RequestedPostCommand;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
@@ -17,7 +18,7 @@ public class PostCommandController {
     }
 
     @PostMapping("/posts")
-    public Mono<Response<Post>> createPost(RequestedPostCommand requestedPost) {
+    public Mono<Response<Post>> createPost(@RequestBody RequestedPostCommand requestedPost) {
         var requestedPostCommand = new RequestedPostCommand(requestedPost.title(), requestedPost.mimeType(), requestedPost.content());
         return createPostUseCase.createPostUseCase(requestedPostCommand).map(Response::new);
     }

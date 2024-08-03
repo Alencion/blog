@@ -17,6 +17,6 @@ public class PostFileSystemAdaptor implements PostPort {
     @Override
     public Mono<Post> create(Post post) {
         //        Flux<String> stringFlux = fileSystemAdaptor.readFile();
-        return null;
+        return Mono.just(post);
     }
 }
