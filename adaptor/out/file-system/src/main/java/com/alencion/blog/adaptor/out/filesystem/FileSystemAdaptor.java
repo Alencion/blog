@@ -4,9 +4,11 @@ package com.alencion.blog.adaptor.out.filesystem;
 import com.alencion.blog.file.application.FileSystemPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,13 +25,22 @@ public class FileSystemAdaptor implements FileSystemPort {
         try (Stream<Path> walk = Files.walk(Paths.get(directoryPath))) {
             return walk.filter(Files::isRegularFile).collect(Collectors.toList());
         } catch (IOException e) {
-            log.error("[ERROR] Failed to get", e);
+            log.error("[ERROR] Failed to get file paths", e);
             throw e;
         }
     }
 
     @Override
-    public Flux<String> readFile(String filePath) {
-        return null;
+    public Mono<String> readFile(Path filePath) {
+        return Mono.fromCallable(() -> {
+            StringBuilder builder = new StringBuilder();
+            try (BufferedReader br = Files.newBufferedReader(filePath, StandardCharsets.UTF_8)) {
+                String str = null;
+                while ((str = br.readLine()) != null) {
+                    builder.append(str).append("\n");
+                }
+            }
+            return builder.toString();
+        });
     }
 }

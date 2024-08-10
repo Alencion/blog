@@ -1,6 +1,6 @@
 package com.alencion.blog.file.application;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,5 +10,5 @@ public interface FileSystemPort {
 
     List<Path> getFilePathsBy(String directoryPath) throws IOException;
 
-    Flux<String> readFile(String filePath);
+    Mono<String> readFile(Path filePath);
 }

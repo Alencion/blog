@@ -1,5 +1,6 @@
 package com.alencion.blog.post;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -13,9 +14,11 @@ public enum PostMimeType {
 
     private static final Map<String, PostMimeType> VALUE_MAP = Arrays.stream(values()).collect(Collectors.toMap(PostMimeType::getValue, Function.identity()));
 
+    @JsonCreator
     public static PostMimeType of(String value) {
         return VALUE_MAP.getOrDefault(value.toLowerCase(), UNKNOWN);
     }
+
     private final String value;
 
     PostMimeType(String value) {

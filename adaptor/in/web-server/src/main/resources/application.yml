@@ -4,3 +4,8 @@ logging:
     com:
       alencion:
         blog: debug
+
+alencion:
+  blog:
+    post:
+      resource-path: E:/Projects/blog/adaptor/in/web-server/src/main/resources/static/posts/
