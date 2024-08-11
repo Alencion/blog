@@ -1,6 +1,7 @@
 package com.alencion.blog.adaptor.out.filesystem;
 
 
+import com.alencion.blog.post.Post;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -18,6 +19,12 @@ import java.util.stream.Stream;
 @Slf4j
 @Component
 public class FileSystemAdaptor implements FileSystemPort {
+
+    @Override
+    public void writeFile(String path, String content) throws IOException {
+        Path newFilePath = Paths.get(path);
+        Files.createFile(newFilePath);
+    }
 
     @Override
     public List<Path> getFilePathsBy(String directoryPath) throws IOException {

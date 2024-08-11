@@ -1,5 +1,12 @@
 package com.alencion.blog.post.application.query;
 
-public record RequestedPostCommand(String title, String mimeType, String content) {
+import java.time.ZonedDateTime;
+
+public record RequestedPostCommand(String title,
+                                   String author,
+                                   String mimeType,
+                                   String content) {
+
+
 
 }

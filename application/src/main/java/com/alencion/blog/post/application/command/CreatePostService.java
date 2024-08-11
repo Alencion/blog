@@ -1,6 +1,7 @@
 package com.alencion.blog.post.application.command;
 
 import com.alencion.blog.post.Post;
+import com.alencion.blog.post.PostMeta;
 import com.alencion.blog.post.PostMimeType;
 import com.alencion.blog.post.application.query.RequestedPostCommand;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class CreatePostService implements CreatePostUseCase {
 
     @Override
     public Mono<Post> createPostUseCase(RequestedPostCommand command) {
-        Post post = Post.of(command.title(), PostMimeType.of(command.mimeType()), command.content());
+        Post post = Post.of(PostMeta.of(command), command.content());
         return postCommandPort.create(post);
     }
 }

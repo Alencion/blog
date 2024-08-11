@@ -4,17 +4,15 @@ import lombok.Getter;
 
 @Getter
 public final class Post {
-    public static Post of(String title, PostMimeType postMimeType, String content) {
-        return new Post(title, postMimeType, content);
+    public static Post of(PostMeta postMeta, String content) {
+        return new Post(postMeta, content);
     }
 
-    private final String title;
-    private final PostMimeType mimeType;
+    private final PostMeta postMeta;
     private final String content;
 
-    private Post(String title, PostMimeType mimeType, String content) {
-        this.title = title;
-        this.mimeType = mimeType;
+    private Post(PostMeta postMeta, String content) {
+        this.postMeta = postMeta;
         this.content = content;
     }
 
