@@ -3,8 +3,8 @@ package com.alencion.blog.adaptor.out.filesystem.post;
 import com.alencion.blog.adaptor.out.filesystem.FileSystemAdaptor;
 import com.alencion.blog.post.Post;
 import com.alencion.blog.post.application.command.PostCommandPort;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -42,7 +42,12 @@ public class PostCommandFileSystemAdaptor implements PostCommonAdaptor, PostComm
     }
 
     private String makeFileContent(Post post) {
-        String postMeta = this.objectMapper.writeValueAsString(post.getPostMeta());
+        String postMeta = null;
+        try {
+            postMeta = this.objectMapper.writeValueAsString(post.getPostMeta());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         return String.join("\n", postMeta, infix, post.getContent());
     }
 

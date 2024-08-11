@@ -8,4 +8,5 @@ logging:
 alencion:
   blog:
     post:
-      resource-path: /Users/jeongjunlee/blog/application/src/main/resources/posts
+      #      resource-path: /Users/jeongjunlee/blog/application/src/main/resources/posts
+      resource-path: E:/Projects/blog/application/src/main/resources/posts

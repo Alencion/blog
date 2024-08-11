@@ -1,7 +1,6 @@
 package com.alencion.blog.adaptor.out.filesystem;
 
 
-import com.alencion.blog.post.Post;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -12,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,7 +23,8 @@ public class FileSystemAdaptor implements FileSystemPort {
     @Override
     public void writeFile(String path, String content) throws IOException {
         Path newFilePath = Paths.get(path);
-        Files.createFile(newFilePath);
+        Path newFile = Files.createFile(newFilePath);
+        Files.writeString(newFile, content, StandardCharsets.UTF_8, StandardOpenOption.WRITE);
     }
 
     @Override

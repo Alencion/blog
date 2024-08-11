@@ -19,7 +19,7 @@ public class PostCommandController {
 
     @PostMapping("/posts")
     public Mono<Response<Post>> createPost(@RequestBody RequestedPostCommand requestedPost) {
-        var requestedPostCommand = new RequestedPostCommand(requestedPost.title(), requestedPost.mimeType(), requestedPost.content());
+        var requestedPostCommand = new RequestedPostCommand(requestedPost.title(), requestedPost.author(), requestedPost.mimeType(), requestedPost.content());
         return createPostUseCase.createPostUseCase(requestedPostCommand).map(Response::new);
     }
 }

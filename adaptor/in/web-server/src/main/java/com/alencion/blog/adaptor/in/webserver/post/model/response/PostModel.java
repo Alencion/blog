@@ -12,7 +12,12 @@ public record PostModel(String title,
                         ZonedDateTime updatedAt) {
 
     public static PostModel from(Post post) {
-        return new PostModel(post.getTitle(), post.getMimeType().getValue(), post.getContent());
+        return new PostModel(post.getPostMeta().title(),
+                post.getPostMeta().author(),
+                post.getPostMeta().postMimeType().getValue(),
+                post.getContent(),
+                post.getPostMeta().createdAt(),
+                post.getPostMeta().updatedAt());
     }
 
 }
