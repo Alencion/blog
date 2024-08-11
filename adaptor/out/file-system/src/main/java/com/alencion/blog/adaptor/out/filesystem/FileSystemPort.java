@@ -1,4 +1,4 @@
-package com.alencion.blog.file.application;
+package com.alencion.blog.adaptor.out.filesystem;
 
 import reactor.core.publisher.Mono;
 

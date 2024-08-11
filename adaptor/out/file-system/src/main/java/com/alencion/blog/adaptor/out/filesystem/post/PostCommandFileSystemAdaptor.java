@@ -1,16 +1,17 @@
-package com.alencion.blog.adaptor.out.filesystem;
+package com.alencion.blog.adaptor.out.filesystem.post;
 
+import com.alencion.blog.adaptor.out.filesystem.FileSystemAdaptor;
 import com.alencion.blog.post.Post;
-import com.alencion.blog.post.application.PostPort;
+import com.alencion.blog.post.application.command.PostCommandPort;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Component
-public class PostFileSystemAdaptor implements PostPort {
+public class PostCommandFileSystemAdaptor implements PostCommandPort {
 
     private final FileSystemAdaptor fileSystemAdaptor;
 
-    public PostFileSystemAdaptor(FileSystemAdaptor fileSystemAdaptor) {
+    public PostCommandFileSystemAdaptor(FileSystemAdaptor fileSystemAdaptor) {
         this.fileSystemAdaptor = fileSystemAdaptor;
     }
 
@@ -19,4 +20,6 @@ public class PostFileSystemAdaptor implements PostPort {
         //        Flux<String> stringFlux = fileSystemAdaptor.readFile();
         return Mono.just(post);
     }
+
+
 }

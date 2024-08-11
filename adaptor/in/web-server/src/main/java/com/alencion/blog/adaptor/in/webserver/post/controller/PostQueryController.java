@@ -1,10 +1,10 @@
 package com.alencion.blog.adaptor.in.webserver.post.controller;
 
 import com.alencion.blog.adaptor.in.webserver.post.model.request.PostQueryParams;
-import com.alencion.blog.adaptor.in.webserver.post.model.response.PostModel;
+import com.alencion.blog.adaptor.in.webserver.post.model.response.PostMetaModel;
 import com.alencion.blog.adaptor.in.webserver.post.model.response.Response;
-import com.alencion.blog.post.application.PostQueryCommand;
-import com.alencion.blog.post.application.PostQueryUseCase;
+import com.alencion.blog.post.application.query.PostQueryCommand;
+import com.alencion.blog.post.application.query.PostQueryUseCase;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
@@ -21,7 +21,7 @@ public class PostQueryController {
     }
 
     @GetMapping("/posts")
-    public Mono<Response<List<PostModel>>> getPosts(PostQueryParams postQueryParams) {
-        return postQueryUseCase.queryPosts(new PostQueryCommand()).map(PostModel::from).collectList().map(Response::new);
+    public Mono<Response<List<PostMetaModel>>> getPosts(PostQueryParams postQueryParams) {
+        return postQueryUseCase.queryPosts(new PostQueryCommand()).map(PostMetaModel::from).collectList().map(Response::new);
     }
 }

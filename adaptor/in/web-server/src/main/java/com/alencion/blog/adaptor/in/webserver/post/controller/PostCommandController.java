@@ -2,8 +2,8 @@ package com.alencion.blog.adaptor.in.webserver.post.controller;
 
 import com.alencion.blog.adaptor.in.webserver.post.model.response.Response;
 import com.alencion.blog.post.Post;
-import com.alencion.blog.post.application.CreatePostUseCase;
-import com.alencion.blog.post.application.RequestedPostCommand;
+import com.alencion.blog.post.application.command.CreatePostUseCase;
+import com.alencion.blog.post.application.query.RequestedPostCommand;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

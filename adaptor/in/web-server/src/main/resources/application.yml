@@ -8,4 +8,4 @@ logging:
 alencion:
   blog:
     post:
-      resource-path: E:/Projects/blog/adaptor/in/web-server/src/main/resources/static/posts/
+      resource-path: /Users/jeongjunlee/blog/application/src/main/resources/posts

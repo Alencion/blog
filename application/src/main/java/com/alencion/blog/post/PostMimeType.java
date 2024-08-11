@@ -1,6 +1,8 @@
 package com.alencion.blog.post;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -23,5 +25,11 @@ public enum PostMimeType {
 
     PostMimeType(String value) {
         this.value = value;
+    }
+
+    @JsonValue
+    @Override
+    public String toString() {
+        return this.value;
     }
 }
