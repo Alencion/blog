@@ -1,7 +1,6 @@
 subprojects {
     dependencies {
-        implementation "org.springframework:spring-context"
-
         implementation(project(":application"))
+        implementation "org.springframework:spring-context"
     }
 }

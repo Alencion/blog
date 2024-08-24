@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 @Component
 public class PostCommandFileSystemAdaptor implements PostCommonAdaptor, PostCommandPort {
 
-    private static final String infix = "=====";
+    private static final String INFIX = "=====";
     private final String postResourcePath;
     private final FileSystemAdaptor fileSystemAdaptor;
     private final ObjectMapper objectMapper;
@@ -31,9 +31,9 @@ public class PostCommandFileSystemAdaptor implements PostCommonAdaptor, PostComm
 
     @Override
     public Mono<Post> create(Post post) {
-        String fileContent = makeFileContent(post);
-        Path path = Paths.get(postResourcePath, post.getPostMeta().createFileName());
         try {
+            String fileContent = makeFileContent(post);
+            Path path = Paths.get(postResourcePath, post.getPostMeta().createFileName());
             fileSystemAdaptor.writeFile(path.toString(), fileContent);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -41,16 +41,10 @@ public class PostCommandFileSystemAdaptor implements PostCommonAdaptor, PostComm
         return Mono.just(post);
     }
 
-    private String makeFileContent(Post post) {
-        String postMeta = null;
-        try {
-            postMeta = this.objectMapper.writeValueAsString(post.getPostMeta());
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        return String.join("\n", postMeta, infix, post.getContent());
+    private String makeFileContent(Post post) throws JsonProcessingException {
+        String postMeta = this.objectMapper.writeValueAsString(post.getPostMeta());
+        return String.join("\n", postMeta, INFIX, post.getContent());
     }
-
 
     @Override
     public ObjectMapper getObjectMapper() {
