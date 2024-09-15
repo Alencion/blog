@@ -1,3 +1,0 @@
-spring:
-  restdocs:
-    outputDir: build/generated-snippets

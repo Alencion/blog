@@ -1,0 +1,4 @@
+[submodule "deily-server"]
+	path = deily-server
+	url = https://github.com/Alencion/deily-server.git
+	branch = main

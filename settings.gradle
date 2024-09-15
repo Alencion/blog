@@ -1,6 +1,0 @@
-rootProject.name = 'blog'
-
-include 'adaptor:in:web-server'
-include 'adaptor:out:mongodb', 'adaptor:out:file-system'
-include 'application'
-include 'toolbox:monitor', 'toolbox:logger', 'toolbox:common', 'toolbox:docs'
